@@ -1,33 +1,55 @@
 <!doctype html>
-<html >
+<html  ng-app='ShoppingListCheckOff'>
   <head>
-    <title>Lunch Checker</title>
+    <title>Shopping List Check Off</title>
     <script src="angular.min.js"></script>
-    <script src="LunchCheck.js"></script>
+    <script src="ShoppingListCheckOff.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
-      .message { font-size: 1.3em; font-weight: bold; }
+      em{
+        margin-bottom: 7px;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
     </style>
   </head>
-<body ng-app='LunchCheck'>
-   <div class="container">
-     <h1>Lunch Checker</h1>
-     <div ng-controller="LunchCheckController">
-       <div>
-         Lunch-Menu:
-         <input type="text"
-          ng-model="sentence" >
-       </div>
-       <div>
-         <button ng-click="reWords()">Check If Too Much</button>
+<body>
+  <div class="container">
+  <h1>Shopping List Check Off</h1>
 
-           <div><span ng-style="{red: words =='Please enter data first', green: words == 'Enjoy!'}">{{words}}</span></div>
+  <div class="row">
 
+    <!-- To Buy List -->
+     <div  ng-controller='ToBuyController as showList'>
+     <h2>To Buy:</h2>
+       <li ng-repeat="item in showList.items">
+        Buy {{ item.quantity }} {{ item.name }}
+          <button ng-click="showList.removeItem($index);">Bought</button>
+        </li>
+       <em>{{words1}}</em>
+    </div>
 
-       </div>
-
-   </div>
+    <!-- Already Bought List -->
+    <div  ng-controller='AlreadyBoughtController as list2'>
+     <h2>Already Bought:</h2>
+     <li ng-repeat="item in list2.items">
+        Bought {{ item.quantity }} {{ item.name }}
+      </li>
+      <em>{{list2.words()}}</em>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
