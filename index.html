@@ -1,55 +1,29 @@
 <!doctype html>
-<html  ng-app='ShoppingListCheckOff'>
+<html ng-app='NarrowItDownApp'>
   <head>
-    <title>Shopping List Check Off</title>
-    <script src="angular.min.js"></script>
-    <script src="ShoppingListCheckOff.js"></script>
+    <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="angular.min.js"></script>
+      <script src="app.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <style>
-      em{
-        margin-bottom: 7px;
-        color: red;
-        font-size: 1.2em;
-      }
-      li {
-        margin-bottom: 7px;
-        font-size: 1.2em;
-      }
-      li > button {
-        margin-left: 6px;
-      }
-      button > span {
-        color: green;
-      }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
 <body>
-  <div class="container">
-  <h1>Shopping List Check Off</h1>
+   <div class="container" ng-controller="NarrowItDownController as menu">
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-  <div class="row">
-
-    <!-- To Buy List -->
-     <div  ng-controller='ToBuyController as showList'>
-     <h2>To Buy:</h2>
-       <li ng-repeat="item in showList.items">
-        Buy {{ item.quantity }} {{ item.name }}
-          <button ng-click="showList.removeItem($index);">Bought</button>
-        </li>
-       <em>{{words1}}</em>
+    <div class="form-group">
+      <input ng-model="menu.searchItem" type="text" placeholder="search term" class="form-control">
     </div>
-
-    <!-- Already Bought List -->
-    <div  ng-controller='AlreadyBoughtController as list2'>
-     <h2>Already Bought:</h2>
-     <li ng-repeat="item in list2.items">
-        Bought {{ item.quantity }} {{ item.name }}
-      </li>
-      <em>{{list2.words()}}</em>
+    <div class="form-group narrow-button">
+        <button class="btn btn-primary" ng-click="menu.search()">Narrow It Down For Me!</button>
     </div>
+       <div style="height:80px"></div>
+       <div class="emptyMessage">{{menu.nothing}}</div>
+    <!-- found-items should be implemented as a component -->
+       <found-items
+               items="menu.foundItem" title="{{menu.foundItem}}"   on-remove="menu.removeItem(index)"></found-items>
   </div>
-</div>
 
 </body>
 </html>
