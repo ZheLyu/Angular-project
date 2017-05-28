@@ -1,29 +1,23 @@
-<!doctype html>
-<html ng-app='NarrowItDownApp'>
-  <head>
-    <title>Narrow Down Your Menu Choice</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <script src="angular.min.js"></script>
-      <script src="app.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
-  </head>
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Menu</title>
+</head>
 <body>
-   <div class="container" ng-controller="NarrowItDownController as menu">
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
+    <h1>Restaurant Menu</h1>
+    <ui-view></ui-view>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="src/menuapp.module.js"></script>
+    <script src="src/data.module.js"></script>
+    <script src="src/menudata.service.js"></script>
+    <script src="src/categories.component.js"></script>
+    <script src="src/items.component.js"></script>
+    <script src="src/routes.js"></script>
+    <script src="src/categories.controller.js"></script>
+    <script src="src/items.controller.js"></script>
 
-    <div class="form-group">
-      <input ng-model="menu.searchItem" type="text" placeholder="search term" class="form-control">
-    </div>
-    <div class="form-group narrow-button">
-        <button class="btn btn-primary" ng-click="menu.search()">Narrow It Down For Me!</button>
-    </div>
-       <div style="height:80px"></div>
-       <div class="emptyMessage">{{menu.nothing}}</div>
-    <!-- found-items should be implemented as a component -->
-       <found-items
-               items="menu.foundItem" title="{{menu.foundItem}}"   on-remove="menu.removeItem(index)"></found-items>
-  </div>
 
 </body>
 </html>
