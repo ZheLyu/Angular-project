@@ -1,0 +1,24 @@
+<div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12">
+
+    <div ng-show="myInforCtrl.info">
+        <h3 class="text-center">My Information</h3>
+        <p>First Name:{{myInforCtrl.info.firstName}}</p>
+        <p>Lat Name:{{myInforCtrl.info.lastName}}</p>
+        <p>Email Address:{{myInforCtrl.info.email}}</p>
+        <p>Phone Number:{{myInforCtrl.info.phoneNumber}}</p>
+
+        <h3>Favorite</h3>
+        <img class="img-responsive" width="250" height="150" ng-src="https://zhelyu-angularjs.herokuapp.com/images/{{myInforCtrl.menuItem.short_name}}.jpg" alt="{{myInforCtrl.menuItem.name}}">
+        <p>{{myInforCtrl.menuItem.name}}</p>
+        <p>{{ myInforCtrl.menuItem.description}}</p>
+    </div>
+    <div ng-if="!myInforCtrl.info">
+        <h3 class="text-center">Not signed up yet.</h3>
+        <p class="text-center"><a ui-sref="public.signup">Sign up now!</a></p>
+    </div>
+</div>
+
+
+
+
+
